@@ -1,0 +1,288 @@
+/* ------------------------------------------------------------
+   A small book of quotes — variant A: "classic printed book"
+   ------------------------------------------------------------
+   Everything you might want to tune lives in :root below.
+   The rest of the file is ordered top-to-bottom like the page:
+   page → title page (header) → quotes → dividers → colophon.
+   ------------------------------------------------------------ */
+
+:root {
+  /* Colours — dark warm-grey page, soft cream ink, gold initial.
+     For a light "paper" look instead, swap these for:
+     --paper #f6f1e7, --ink #29241f, --ink-soft #665a4e,
+     --ink-faint #b9ad9b, --initial #6f4a2c, --selection #e7dcc8 */
+  --paper:       #1e1c19;   /* page background */
+  --ink:         #e4dccd;   /* body text and headings */
+  --ink-soft:    #a1958a;   /* subtitle, author lines, colophon */
+  --ink-faint:   #5b544b;   /* rules and ornaments */
+  --initial:     #c8a06d;   /* the raised initial letter */
+  --selection:   #3f3830;   /* text-selection highlight */
+
+  /* Type */
+  --serif: "EB Garamond", "Iowan Old Style", "Palatino Linotype", Palatino,
+           "Book Antiqua", Georgia, serif;
+
+  /* Body size: ~19.5px on a phone, ~21.5px on a laptop */
+  --body-size:   clamp(1.2rem, 1.125rem + 0.4vw, 1.35rem);
+  --leading:     1.55;      /* body line-height */
+  --measure:     33rem;     /* width of the text column (~62 characters) */
+  --para-gap:    0.9em;     /* space between paragraphs inside a quote */
+
+  /* The raised initial: multiply by body size. 2.15 ≈ two lines tall. */
+  --initial-size: 2.15em;
+
+  /* Vertical rhythm (rem so it doesn't scale with body size) */
+  --space-page-top:    6rem;    /* above the title */
+  --space-page-bottom: 6rem;    /* below the colophon */
+  --space-title:       5rem;    /* title page → first quote */
+  --space-quote:       3.75rem; /* around each divider */
+  --space-end:         5rem;    /* last quote → end mark */
+}
+
+/* ---- Page -------------------------------------------------- */
+
+html {
+  background: var(--paper);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--serif);
+  font-size: var(--body-size);
+  line-height: var(--leading);
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--ink);
+}
+
+.book {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: var(--space-page-top) 1.5rem var(--space-page-bottom);
+}
+
+/* ---- Title page (header) ----------------------------------- */
+
+.book-header {
+  text-align: center;
+  margin-bottom: var(--space-title);
+}
+
+.book-header h1 {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.35rem;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* A short hairline under the title, like a rule on a title page. */
+.book-header h1::after {
+  content: "";
+  display: block;
+  width: 3.25rem;
+  height: 1px;
+  margin: 1.4rem auto 1.15rem;
+  background: var(--ink-faint);
+}
+
+.book-subtitle {
+  font-variant-caps: small-caps;    /* caps and small caps */
+  font-feature-settings: "smcp";    /* ask the font for real small caps */
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* A one-line dedication under the subtitle. */
+.book-dedication {
+  font-style: italic;
+  font-size: 1em;
+  color: var(--ink-soft);
+  margin: 2.5rem 0 0;
+}
+
+/* ---- Quotes ------------------------------------------------ */
+
+.quote {
+  margin: 0;
+}
+
+/* Quote titles: centred, caps and small caps in the serif face,
+   the way chapter or section titles are set in a book. */
+.quote-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-variant-caps: small-caps;
+  font-feature-settings: "smcp";
+  font-size: 1.05em;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--ink);
+  margin: 0 0 1.6rem;
+  text-wrap: balance;
+}
+
+/* Paragraphs: all start flush left, separated by a little space. */
+.quote-body p {
+  margin: 0;
+  text-wrap: pretty;   /* fewer orphaned last words, where supported */
+}
+
+.quote-body p + p {
+  margin-top: var(--para-gap);
+}
+
+/* The raised initial — first letter of the first paragraph.
+   It is NOT floated: it sits on the same baseline as the rest of the
+   first line and simply rises above it. That means it can never
+   hang below a short (one- or two-line) paragraph, never leaves an
+   odd gap before the second letter, and needs no per-browser
+   tuning. `line-height: 0` means the big letter adds no height to
+   the first line, so the line spacing stays perfectly even.
+   Note: if a quote ever begins with a quotation mark, the mark is
+   enlarged together with the letter — that is how books set it too. */
+.quote-body p:first-child::first-letter {
+  font-size: var(--initial-size);
+  line-height: 0;
+  font-weight: 400;
+  color: var(--initial);
+  margin-right: 0.02em;
+}
+
+/* Attribution: italic, right-aligned, a touch smaller and quieter. */
+.quote-author {
+  font-style: italic;
+  font-size: 0.95em;
+  color: var(--ink-soft);
+  text-align: right;
+  margin: 1.1rem 0 0;
+}
+
+/* Date under the attribution: small, quiet, right-aligned. */
+.quote-date {
+  font-variant-caps: small-caps;
+  font-feature-settings: "smcp";
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  text-align: right;
+  margin: 0.2rem 0 0;
+}
+
+/* ---- Dividers ---------------------------------------------- */
+
+/* The asterism (⁂) that script.js places between quotes. */
+.divider {
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 1.25em;
+  line-height: 1;
+  margin: var(--space-quote) 0;
+  user-select: none;
+}
+
+/* ---- Colophon (footer) ------------------------------------- */
+
+.book-footer {
+  text-align: center;
+  margin-top: var(--space-end);
+}
+
+.end-mark {
+  color: var(--ink-faint);
+  font-size: 1.5em;
+  line-height: 1;
+  margin: 0;
+}
+
+.colophon {
+  font-variant-caps: small-caps;
+  font-feature-settings: "smcp";
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  margin: 1.5rem 0 0;
+}
+
+.back-to-top {
+  font-variant-caps: small-caps;
+  font-feature-settings: "smcp";
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  margin: 2.5rem 0 0;
+}
+
+.back-to-top a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink-faint);
+  padding-bottom: 0.1em;
+}
+
+.back-to-top a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink-soft);
+}
+
+.book-note {
+  font-size: 0.95em;
+  font-style: italic;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* ---- Smaller screens --------------------------------------- */
+
+@media (max-width: 480px) {
+  :root {
+    --space-page-top:    3.75rem;
+    --space-page-bottom: 4.5rem;
+    --space-title:       3.75rem;
+    --space-quote:       3rem;
+    --space-end:         4rem;
+    --initial-size:      2.05em;
+  }
+  .book {
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
+  }
+  .book-header h1 {
+    font-size: 1.95rem;
+  }
+  .book-subtitle {
+    font-size: 0.92rem;
+  }
+}
+
+/* ---- Reduced motion ---------------------------------------- */
+
+/* No smooth scrolling for people who've turned animations off. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ---- Print ------------------------------------------------- */
+
+@media print {
+  html, body { background: #fff; color: #222; }
+  body { font-size: 11.5pt; }
+  .book { max-width: none; padding: 0; }
+  .quote { break-inside: avoid; }
+}

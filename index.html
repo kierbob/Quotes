@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1e1c19">
+  <meta name="description" content="A small personal collection of thoughts, written by Bob.">
+
+  <!-- The title shown in the browser tab -->
+  <title>Thoughts, in words.</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="book" id="top">
+
+    <header class="book-header">
+      <!-- The title shown at the top of the page -->
+      <h1>Thoughts, in words.</h1>
+      <p class="book-subtitle">A small book of quotes by Bob</p>
+      <!-- A one-line dedication, like the first page of a book -->
+      <p class="book-dedication">Thank you for reading.</p>
+    </header>
+
+    <!-- Quotes from quotes.js are rendered in here by script.js -->
+    <section id="quotes" aria-label="Quotes"></section>
+
+    <!-- End mark and a one-line colophon, as at the back of a book -->
+    <footer class="book-footer">
+      <p class="end-mark" aria-hidden="true">❦</p>
+      <!-- Update the year range as the book grows, e.g. 2026–2028 -->
+      <p class="colophon">Set in EB Garamond &middot; 2026&ndash;</p>
+      <p class="back-to-top"><a href="#top">Back to the top</a></p>
+    </footer>
+
+    <noscript>
+      <p class="book-note">This little book needs JavaScript turned on to open its pages.</p>
+    </noscript>
+
+  </main>
+
+  <script src="quotes.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
