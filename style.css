@@ -68,9 +68,24 @@ body {
 }
 
 .book {
+  position: relative;   /* so the view counter can sit in its corner */
   max-width: var(--measure);
   margin: 0 auto;
   padding: var(--space-page-top) 1.5rem var(--space-page-bottom);
+}
+
+/* View counter: small and quiet, top right of the page. */
+.view-count {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  margin: 0;
+  font-variant-caps: small-caps;
+  font-feature-settings: "smcp";
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  user-select: none;
 }
 
 /* ---- Title page (header) ----------------------------------- */
@@ -262,6 +277,10 @@ body {
   .book {
     padding-left: 1.3rem;
     padding-right: 1.3rem;
+  }
+  .view-count {
+    top: 1rem;
+    right: 1.3rem;
   }
   .book-header h1 {
     font-size: 1.95rem;

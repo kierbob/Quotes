@@ -110,6 +110,26 @@ git commit -m "Add a quote"
 git push
 ```
 
+## 6. The view counter
+
+The number in the top right comes from [GoatCounter](https://www.goatcounter.com), a free, privacy‑friendly counter (no cookies, no tracking of individuals). It also gives you a private dashboard with views per day.
+
+One‑time setup:
+
+1. Go to <https://www.goatcounter.com/signup> and create a free account. Pick a **code** — say `bobquotes`. Your dashboard will be at `https://bobquotes.goatcounter.com`.
+2. In the GoatCounter dashboard go to **Settings → Site settings** and tick **"Allow adding visitor counts to your website"**, then save. (Without this the number can't be shown on the page.)
+3. Open `index.html` and find this line near the top:
+
+   ```html
+   <script data-goatcounter="https://YOUR-CODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+   ```
+
+   Replace `YOUR-CODE` with your code, e.g. `https://bobquotes.goatcounter.com/count`. Save and upload.
+
+That's it. The counter is hidden until the code is set, and also hidden if GoatCounter ever can't be reached, so the page never shows a broken number. Views from your own computer while previewing locally are not counted.
+
+To remove the counter entirely, delete that `<script>` line in `index.html`.
+
 ---
 
 ## Notes

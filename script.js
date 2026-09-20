@@ -58,4 +58,24 @@
 
     container.appendChild(article);
   });
+
+  // ---- View counter -------------------------------------------
+  // Reads the total from GoatCounter and shows it top-right.
+  // The site code comes from the <script data-goatcounter> tag in
+  // index.html, so it only has to be set in one place. If the code
+  // is still the placeholder, or the request fails, nothing is shown.
+  const gc = document.querySelector("script[data-goatcounter]");
+  const counter = document.getElementById("view-count");
+  if (gc && counter && gc.dataset.goatcounter.indexOf("YOUR-CODE") === -1) {
+    const base = gc.dataset.goatcounter.replace(/\/count\/?$/, "");
+    fetch(base + "/counter/TOTAL.json")
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (data) {
+        const n = parseInt(String(data.count).replace(/\D/g, ""), 10);
+        if (isNaN(n)) return;
+        counter.textContent = n.toLocaleString("en") + (n === 1 ? " view" : " views");
+        counter.hidden = false;
+      })
+      .catch(function () { /* stay hidden */ });
+  }
 })();
