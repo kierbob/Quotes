@@ -33,7 +33,7 @@ const QUOTES = [
       "The future is frightening because it isn't you yet."
     ],
     author: "Bob",
-    date: "20 September 2026"
+    date: "19 September 2026"
   },
 
   {
@@ -42,7 +42,7 @@ const QUOTES = [
       "Love is like rain. We welcome it when we are dry, resent it when it overwhelms us, and miss it when the sky is clear."
     ],
     author: "Bob",
-    date: "20 September 2026"
+    date: "19 September 2026"
   },
 
   {
@@ -52,7 +52,7 @@ const QUOTES = [
       "Perhaps we do this with more than swords. Sometimes we change what we have, hoping it will become what we imagined wanting."
     ],
     author: "Bob",
-    date: "20 September 2026"
+    date: "19 September 2026"
   },
 
   {
@@ -64,7 +64,7 @@ const QUOTES = [
       "Perhaps love should not require you to disappear just to keep someone else comfortable."
     ],
     author: "Bob",
-    date: "20 September 2026"
+    date: "19 September 2026"
   },
 
   {
@@ -76,7 +76,7 @@ const QUOTES = [
       "Perhaps growing up is not just gaining new things, but finally understanding the value of what we once had."
     ],
     author: "Bob",
-    date: "20 September 2026"
+    date: "19 September 2026"
   },
 
   {
@@ -87,7 +87,7 @@ const QUOTES = [
       "Perhaps that's the strange thing about memories. Sometimes we appreciate moments most when we are no longer living them, because distance allows us to see the happiness that was hidden beneath all the things we thought were wrong."
     ],
     author: "Bob",
-    date: "20 September 2026"
+    date: "19 September 2026"
   },
 
   {
@@ -98,7 +98,7 @@ const QUOTES = [
       "Perhaps happiness is not one feeling at all, but the brief moment when what we have and what we want become the same thing."
     ],
     author: "Bob",
-    date: "20 September 2026"
+    date: "19 September 2026"
   },
 
   {
@@ -109,7 +109,7 @@ const QUOTES = [
       "Perhaps change frightens us not because we know it will be worse, but because we don't know if it will be better."
     ],
     author: "Bob",
-    date: "20 September 2026"
+    date: "19 September 2026"
   },
 
   {
@@ -121,7 +121,7 @@ const QUOTES = [
       "Perhaps the hardest part is that we don't always know what we are pushing away until it is gone. Sometimes only then do we realise that what we thought wasn't right for us was exactly what we needed."
     ],
     author: "Bob",
-    date: "20 September 2026"
+    date: "19 September 2026"
   },
 
   {
@@ -132,7 +132,7 @@ const QUOTES = [
       "Perhaps change was never meant to be understood as good or bad. It is simply the shape life takes when we can no longer remain the person we once were."
     ],
     author: "Bob",
-    date: "20 September 2026"
+    date: "19 September 2026"
   },
 
   {
@@ -142,6 +142,92 @@ const QUOTES = [
       "They can explain why they left, tell you everything is okay, or give you every answer you asked for. But there will always be a part of healing that belongs only to you.",
       "Sometimes closure is simply giving yourself enough time to look back without anger, to accept what happened, and to let yourself heal.",
       "Because if we never give ourselves the time to heal, we don't leave the past behind. We carry it with us."
+    ],
+    author: "Bob",
+    date: "19 September 2026"
+  },
+
+  {
+    title: "Alone Among People",
+    paragraphs: [
+      "Being alone is not always a frightening thing. Sometimes solitude is peaceful. Sometimes we choose it, and sometimes we even enjoy it.",
+      "But there is another kind of loneliness: being surrounded by people and still feeling alone.",
+      "You can sit among friends and feel forgotten. You can stand among family and feel unheard. You can be surrounded by people who care about you and still wonder if anyone truly sees you.",
+      "Perhaps loneliness was never about how many people surround you, but about whether you feel seen by any of them."
+    ],
+    author: "Bob",
+    date: "20 September 2026"
+  },
+
+  {
+    title: "The Right Time",
+    paragraphs: [
+      "We spend so much of our lives waiting for the right time.",
+      "We wait until we are ready, until life feels right, until the opportunity feels close enough to reach. But sometimes the moment we are waiting for never comes.",
+      "Perhaps there is no perfect time. Sometimes you simply have to take the opportunity in front of you and find out where it leads.",
+      "And if it wasn't right, then it wasn't right. At least you moved."
+    ],
+    author: "Bob",
+    date: "20 September 2026"
+  },
+
+  {
+    title: "Holding On",
+    paragraphs: [
+      "Sometimes we hold onto things we already know we cannot have back.",
+      "Perhaps it is hope that keeps us holding on. Hope that a person will return, that a moment will come again, or that something lost might somehow find its way back to us.",
+      "But sometimes I think we hold onto the past because letting go feels like losing a part of ourselves with it.",
+      "Perhaps that is why we struggle to let go of things that are already gone. We aren't always holding onto them because we believe they will return. Sometimes we are holding onto them because we are afraid of who we might be without them."
+    ],
+    author: "Bob",
+    date: "20 September 2026"
+  },
+
+  {
+    title: "The Freedom to Imagine",
+    paragraphs: [
+      "Sometimes I think we are happiest when we know the least.",
+      "Before something happens, we can imagine it being anything. A journey can become an adventure, a meeting can become a memory, and tomorrow can become whatever we want it to be.",
+      "Then reality arrives, and suddenly our expectations have something to compare themselves against.",
+      "Perhaps ignorance isn't always bliss. Perhaps sometimes it is simply the freedom to imagine."
+    ],
+    author: "Bob",
+    date: "20 September 2026"
+  },
+
+  {
+    title: "To My Younger Self",
+    paragraphs: [
+      "If I could go back and tell my younger self one thing, I would tell him not to fear.",
+      "There were so many things I was afraid of that I never needed to be. Fear made moments seem bigger than they really were, turning possibilities into threats before they had even happened.",
+      "Then, once they were over, I would look back and wonder:",
+      "Why was I so scared?",
+      "Perhaps that is the strange thing about fear. Before we face it, it can feel enormous. After we overcome it, we sometimes wonder why it ever had so much power over us."
+    ],
+    author: "Bob",
+    date: "20 September 2026"
+  },
+
+  {
+    title: "Being Understood",
+    paragraphs: [
+      "I think people appreciate being understood more than being loved.",
+      "Love is one side of the story, but understanding is a whole different book.",
+      "You can love someone with your whole heart and still never understand how they see the world, how they think, or what it feels like to live a day as them.",
+      "Perhaps love brings people together, but understanding is what allows them to truly meet."
+    ],
+    author: "Bob",
+    date: "20 September 2026"
+  },
+
+  {
+    title: "The Feeling They Left Behind",
+    paragraphs: [
+      "I don't think the people we remember are always memorable because of what they did or what they said.",
+      "What stays with us is how they made us feel. The laughter, the smiles, the comfort of being around them. Those moments become part of how we remember who they were.",
+      "Years later, we might forget the conversations, the places, and even the things we did together.",
+      "But we remember how they made us feel.",
+      "Perhaps that is what makes someone truly memorable: not what they did, but the feeling they left behind."
     ],
     author: "Bob",
     date: "20 September 2026"
