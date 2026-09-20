@@ -9,9 +9,18 @@
   // fetches the latest copy instead of a cached one. Without this,
   // newly added quotes can take a long time to show up for people
   // who have visited before.
+  // (When the page is opened straight from disk, the plain file is
+  // used instead, since there is no cache to worry about there.)
   const loader = document.createElement("script");
-  loader.src = "quotes.js?t=" + Date.now();
+  loader.src = location.protocol === "file:" ? "quotes.js" : "quotes.js?t=" + Date.now();
   loader.onload = render;
+  loader.onerror = function () {
+    // Fallback: try once more without the timestamp.
+    const plain = document.createElement("script");
+    plain.src = "quotes.js";
+    plain.onload = render;
+    document.head.appendChild(plain);
+  };
   document.head.appendChild(loader);
 
   function render() {
