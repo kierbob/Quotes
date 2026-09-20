@@ -100,7 +100,9 @@ Whenever you add or change quotes:
 
 1. Open the repo on GitHub, click `quotes.js`, click the pencil icon (Edit), make your change, and click **Commit changes**.
    Or, if you edit the file on your computer, go to **Add file → Upload files** and drop the new `quotes.js` in to replace the old one.
-2. GitHub Pages rebuilds automatically. The live site updates within a minute or so. If you still see the old version, do a hard refresh (Ctrl+Shift+R, or Cmd+Shift+R on a Mac).
+2. GitHub Pages rebuilds automatically. The live site updates within a minute or so.
+
+New quotes show up straight away for everyone, because the page always fetches a fresh copy of `quotes.js`. If you ever change `style.css`, `script.js` or `index.html` and still see the old version, wait ten minutes or do a hard refresh (Ctrl+Shift+R, or Cmd+Shift+R on a Mac).
 
 If you're comfortable with git, it's just:
 

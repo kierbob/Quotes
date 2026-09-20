@@ -3,79 +3,92 @@
 
 (function () {
   const container = document.getElementById("quotes");
-  if (!container || typeof QUOTES === "undefined") return;
+  if (!container) return;
 
-  // Turn straight quotes into proper typographic ones for display.
-  function typographic(text) {
-    return text
-      .replace(/(\w)'(\w)/g, "$1’$2")   // don't  → don’t
-      .replace(/(^|\s)"/g, "$1“")       // opening "
-      .replace(/"/g, "”")               // closing "
-      .replace(/(^|\s)'/g, "$1‘")       // opening '
-      .replace(/'/g, "’");              // closing '
-  }
+  // Load quotes.js with a timestamp on the end so the browser always
+  // fetches the latest copy instead of a cached one. Without this,
+  // newly added quotes can take a long time to show up for people
+  // who have visited before.
+  const loader = document.createElement("script");
+  loader.src = "quotes.js?t=" + Date.now();
+  loader.onload = render;
+  document.head.appendChild(loader);
 
-  // Newest first: the last quote in quotes.js is shown at the top.
-  QUOTES.slice().reverse().forEach(function (quote, index) {
-    if (index > 0) {
-      const divider = document.createElement("div");
-      divider.className = "divider";
-      divider.setAttribute("aria-hidden", "true");
-      divider.textContent = "⁂"; // ⁂
-      container.appendChild(divider);
+  function render() {
+    if (typeof QUOTES === "undefined") return;
+
+    // Turn straight quotes into proper typographic ones for display.
+    function typographic(text) {
+      return text
+        .replace(/(\w)'(\w)/g, "$1’$2")   // don't  → don’t
+        .replace(/(^|\s)"/g, "$1“")       // opening "
+        .replace(/"/g, "”")               // closing "
+        .replace(/(^|\s)'/g, "$1‘")       // opening '
+        .replace(/'/g, "’");              // closing '
     }
 
-    const article = document.createElement("article");
-    article.className = "quote";
+    // Newest first: the last quote in quotes.js is shown at the top.
+    QUOTES.slice().reverse().forEach(function (quote, index) {
+      if (index > 0) {
+        const divider = document.createElement("div");
+        divider.className = "divider";
+        divider.setAttribute("aria-hidden", "true");
+        divider.textContent = "⁂"; // ⁂
+        container.appendChild(divider);
+      }
 
-    if (quote.title) {
-      const heading = document.createElement("h2");
-      heading.className = "quote-title";
-      heading.textContent = typographic(quote.title);
-      article.appendChild(heading);
-    }
+      const article = document.createElement("article");
+      article.className = "quote";
 
-    const body = document.createElement("div");
-    body.className = "quote-body";
-    (quote.paragraphs || []).forEach(function (text) {
-      const p = document.createElement("p");
-      p.textContent = typographic(text);
-      body.appendChild(p);
+      if (quote.title) {
+        const heading = document.createElement("h2");
+        heading.className = "quote-title";
+        heading.textContent = typographic(quote.title);
+        article.appendChild(heading);
+      }
+
+      const body = document.createElement("div");
+      body.className = "quote-body";
+      (quote.paragraphs || []).forEach(function (text) {
+        const p = document.createElement("p");
+        p.textContent = typographic(text);
+        body.appendChild(p);
+      });
+      article.appendChild(body);
+
+      const author = document.createElement("p");
+      author.className = "quote-author";
+      author.textContent = "— " + (quote.author || "Bob");
+      article.appendChild(author);
+
+      if (quote.date) {
+        const date = document.createElement("p");
+        date.className = "quote-date";
+        date.textContent = quote.date;
+        article.appendChild(date);
+      }
+
+      container.appendChild(article);
     });
-    article.appendChild(body);
 
-    const author = document.createElement("p");
-    author.className = "quote-author";
-    author.textContent = "— " + (quote.author || "Bob");
-    article.appendChild(author);
-
-    if (quote.date) {
-      const date = document.createElement("p");
-      date.className = "quote-date";
-      date.textContent = quote.date;
-      article.appendChild(date);
+    // ---- View counter -------------------------------------------
+    // Reads the total from GoatCounter and shows it top-right.
+    // The site code comes from the <script data-goatcounter> tag in
+    // index.html, so it only has to be set in one place. If the code
+    // is still the placeholder, or the request fails, nothing is shown.
+    const gc = document.querySelector("script[data-goatcounter]");
+    const counter = document.getElementById("view-count");
+    if (gc && counter && gc.dataset.goatcounter.indexOf("YOUR-CODE") === -1) {
+      const base = gc.dataset.goatcounter.replace(/\/count\/?$/, "");
+      fetch(base + "/counter/TOTAL.json")
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function (data) {
+          const n = parseInt(String(data.count).replace(/\D/g, ""), 10);
+          if (isNaN(n)) return;
+          counter.textContent = n.toLocaleString("en") + (n === 1 ? " view" : " views");
+          counter.hidden = false;
+        })
+        .catch(function () { /* stay hidden */ });
     }
-
-    container.appendChild(article);
-  });
-
-  // ---- View counter -------------------------------------------
-  // Reads the total from GoatCounter and shows it top-right.
-  // The site code comes from the <script data-goatcounter> tag in
-  // index.html, so it only has to be set in one place. If the code
-  // is still the placeholder, or the request fails, nothing is shown.
-  const gc = document.querySelector("script[data-goatcounter]");
-  const counter = document.getElementById("view-count");
-  if (gc && counter && gc.dataset.goatcounter.indexOf("YOUR-CODE") === -1) {
-    const base = gc.dataset.goatcounter.replace(/\/count\/?$/, "");
-    fetch(base + "/counter/TOTAL.json")
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
-      .then(function (data) {
-        const n = parseInt(String(data.count).replace(/\D/g, ""), 10);
-        if (isNaN(n)) return;
-        counter.textContent = n.toLocaleString("en") + (n === 1 ? " view" : " views");
-        counter.hidden = false;
-      })
-      .catch(function () { /* stay hidden */ });
-  }
+  } // end render()
 })();
